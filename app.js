@@ -3,6 +3,8 @@
 var addForm = document.getElementById('addForm');
 var itemList = document.getElementById('items');
 
+const myObj = [];
+
 //add eventlistener
 addForm.addEventListener('submit', addItem);
 //delete eventListener
@@ -32,7 +34,12 @@ li.appendChild(del);
 
 itemList.appendChild(li);
 
-sessionStorage.setItem('name',firstName);
+// localStorage.setItem('name',firstName);
+
+// localStorage.setItem('userData',JSON.stringify(firstName));
+
+myObj.push(firstName);
+localStorage.setItem('userData',JSON.stringify(myObj));
 
 document.getElementById('form-input1').value = '';
 document.getElementById('form-input2').value = '';
@@ -46,7 +53,8 @@ function deleteItem(e){
             itemList.removeChild(li);
         }
     }
-    sessionStorage.removeItem('name');
+    sessionStorage.clear();
+    localStorage.clear();
 }
 
 //filter functionality
