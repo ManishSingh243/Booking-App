@@ -3,7 +3,7 @@
 var addForm = document.getElementById('addForm');
 var itemList = document.getElementById('items');
 
-const myObj = [];
+//const myObj = [];
 
 //add eventlistener
 addForm.addEventListener('submit', addItem);
@@ -35,16 +35,19 @@ li.appendChild(del);
 
 itemList.appendChild(li);
 
-// localStorage.setItem('name',firstName);
+// /myObj.push(userDetail);
+// /* let myObj = {
+//     userName : name,
+//     userEmail : email,
+//     userContact : contact
+// }*/
 
-// localStorage.setItem('userData',JSON.stringify(firstName));
+localStorage.setItem(`${name}`,userDetail);
 
-myObj.push(userDetail);
-localStorage.setItem('userData',JSON.stringify(myObj));
 
 document.getElementById('form-input1').value = '';
 document.getElementById('form-input2').value = '';
-document.getElementById('form-input2').value = '';
+document.getElementById('form-input3').value = '';
 }
 
 //delete functionality
@@ -53,10 +56,15 @@ function deleteItem(e){
         if(confirm("Are you sure?")){
             var li = e.target.parentElement;
             itemList.removeChild(li);
+            
         }
     }
-    sessionStorage.clear();
-    localStorage.clear();
+    var newLi = li.removeChild(li.firstChild);
+    console.log(newLi.textContent);
+    var newValue = newLi.textContent;
+    var newKey = localStorage.key(newValue);
+  //  console.log(newKey);
+    localStorage.removeItem(newKey);
 }
 
 //filter functionality
