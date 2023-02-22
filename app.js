@@ -11,6 +11,8 @@ var itemList = document.getElementById('items');
 addForm.addEventListener('submit', addItem);
 //delete eventListener
 itemList.addEventListener('click', deleteItem);
+//edit functionality
+itemList.addEventListener('click', editItem);
 //filter eventListener
 var filter = document.getElementById('filter');
 filter.addEventListener('keyup', filterItem);
@@ -19,9 +21,9 @@ filter.addEventListener('keyup', filterItem);
 function addItem(e){
     e.preventDefault();
 
-var name = document.getElementById('form-input1').value;
+ var name = document.getElementById('form-input1').value;
 var email = document.getElementById('form-input2').value;
-var contact = document.getElementById('form-input3').value;
+var contact = document.getElementById('form-input3').value; 
 
 var userDetail = name +"-"+ email + "-" + contact;
 
@@ -34,6 +36,12 @@ del.className = 'btn btn-danger btn-sm float-right delete';
 del.appendChild(document.createTextNode('X'));
 
 li.appendChild(del);
+
+var updateItem = document.createElement('button');
+updateItem.className = 'btn btn-primary btn-sm float-right edit';
+updateItem.appendChild(document.createTextNode('Edit'));
+
+li.appendChild(updateItem);
 
 itemList.appendChild(li);
 
@@ -62,7 +70,7 @@ function deleteItem(e){
         }
     }
     var newLi = li.removeChild(li.firstChild);
-    console.log(newLi.textContent);
+ //   console.log(newLi.textContent);
     var newValue = newLi.textContent;
 
     var myObj = Object.keys(localStorage);
@@ -73,6 +81,35 @@ function deleteItem(e){
     var newKey = localStorage.key(i);
   //  console.log(newKey);
     localStorage.removeItem(newKey);
+}
+
+//edit body
+function editItem(e){
+    if(e.target.classList.contains('edit')){
+            var li = e.target.parentElement;
+            itemList.removeChild(li);
+    }
+    
+   // console.log(newLi.textContent);
+    var newValue = li.textContent;
+
+    var myObj = Object.keys(localStorage);
+
+    for(var i=0;i<myObj.length;i++){
+        if(newValue.includes(myObj[i]))break;
+    }
+    var newKey = localStorage.key(i);
+  //  console.log(newKey);
+
+  var value = localStorage.getItem(newKey);
+
+    localStorage.removeItem(newKey);
+
+    var myArray = value.split("-");
+
+    document.getElementById('form-input1').value = myArray[0];
+document.getElementById('form-input2').value = myArray[1];
+document.getElementById('form-input3').value = myArray[2];
 }
 
 //filter functionality
