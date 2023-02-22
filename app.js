@@ -1,3 +1,5 @@
+localStorage.clear();
+
 //Add functionality
 
 var addForm = document.getElementById('addForm');
@@ -62,7 +64,13 @@ function deleteItem(e){
     var newLi = li.removeChild(li.firstChild);
     console.log(newLi.textContent);
     var newValue = newLi.textContent;
-    var newKey = localStorage.key(newValue);
+
+    var myObj = Object.keys(localStorage);
+
+    for(var i=0;i<myObj.length;i++){
+        if(newValue.includes(myObj[i]))break;
+    }
+    var newKey = localStorage.key(i);
   //  console.log(newKey);
     localStorage.removeItem(newKey);
 }
