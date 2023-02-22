@@ -69,17 +69,15 @@ function deleteItem(e){
             
         }
     }
-    var newLi = li.removeChild(li.firstChild);
- //   console.log(newLi.textContent);
-    var newValue = newLi.textContent;
 
+    var newValue = li.textContent;
     var myObj = Object.keys(localStorage);
 
     for(var i=0;i<myObj.length;i++){
         if(newValue.includes(myObj[i]))break;
     }
+
     var newKey = localStorage.key(i);
-  //  console.log(newKey);
     localStorage.removeItem(newKey);
 }
 
@@ -92,24 +90,22 @@ function editItem(e){
     
    // console.log(newLi.textContent);
     var newValue = li.textContent;
-
     var myObj = Object.keys(localStorage);
 
     for(var i=0;i<myObj.length;i++){
         if(newValue.includes(myObj[i]))break;
     }
-    var newKey = localStorage.key(i);
-  //  console.log(newKey);
 
-  var value = localStorage.getItem(newKey);
+    var newKey = localStorage.key(i);
+    var value = localStorage.getItem(newKey);
 
     localStorage.removeItem(newKey);
 
     var myArray = value.split("-");
 
     document.getElementById('form-input1').value = myArray[0];
-document.getElementById('form-input2').value = myArray[1];
-document.getElementById('form-input3').value = myArray[2];
+    document.getElementById('form-input2').value = myArray[1];
+    document.getElementById('form-input3').value = myArray[2];
 }
 
 //filter functionality
