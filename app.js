@@ -52,7 +52,17 @@ itemList.appendChild(li);
 //     userContact : contact
 // }*/
 
-localStorage.setItem(`${name}`,userDetail);
+//localStorage.setItem(`${name}`,userDetail);
+    
+    const obj = {
+        name,
+        email,
+        contact
+    }
+    
+    axios.post("https://crudcrud.com/api/4add3c30cda44bd8a6e570f993c4bc65/appointmentData",obj)
+    .then(res=> console.log(res))
+    .catch(err=> console.log(err))
 
 
 document.getElementById('form-input1').value = '';
