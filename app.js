@@ -17,6 +17,12 @@ itemList.addEventListener('click', editItem);
 var filter = document.getElementById('filter');
 filter.addEventListener('keyup', filterItem);
 
+window.addEventListener("DOMContentLoaded", ()=>{
+    axios.get("https://crudcrud.com/api/4add3c30cda44bd8a6e570f993c4bc65/appointmentData")
+    .then(response=>console.log(response))
+    .catch(error=>console.log(error))
+})
+
 //addItem function
 function addItem(e){
     e.preventDefault();
