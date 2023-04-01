@@ -18,9 +18,12 @@ var filter = document.getElementById('filter');
 filter.addEventListener('keyup', filterItem);
 
 window.addEventListener("DOMContentLoaded", ()=>{
-    axios.get("https://crudcrud.com/api/4add3c30cda44bd8a6e570f993c4bc65/appointmentData")
-    .then(response=>console.log(response))
+    const data = axios.get("https://crudcrud.com/api/4add3c30cda44bd8a6e570f993c4bc65/appointmentData")
+    .then((response) => {
+        for(var i=0;i<response.data.length;i++)console.log(response.data[i])
+    })
     .catch(error=>console.log(error))
+    return data;
 })
 
 //addItem function
